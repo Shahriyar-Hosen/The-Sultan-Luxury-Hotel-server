@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express()
 const port = process.env.PORT || 5000
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
 
 app.use(cors())
@@ -22,6 +22,12 @@ async function run(){
 
         app.get('/roomsSuites', async (req, res)=>{
             const rooms = await roomsCollection.find().toArray()
+            res.send(rooms) 
+        })
+        app.get('/roomsSuites/:id', async (req, res)=>{
+            const id = req.params.id
+            const query = {_id:ObjectId(id)}
+            const rooms = await roomsCollection.findOne(query)
             res.send(rooms) 
         })
         app.get('/facilities', async (req, res)=>{
