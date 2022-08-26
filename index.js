@@ -1,36 +1,66 @@
-const express = require('express');
-const cors = require('cors');
+//imported file from browser
+import express from 'express'
+import cors from 'cors'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+dotenv.config()
 const app = express()
-const mongoose = require('mongoose');
-const port = process.env.PORT || 5000
-require('dotenv').config()
 
+// port setting
+const port = process.env.PORT || 5000
+
+//imported file from own file
+import authRouter from './routes/auth.js'
+import hotelRouter from './routes/hotel.js'
+import roomRouter from './routes/room.js'
+import usersRouter from './routes/users.js'
+
+//middleware 
 app.use(cors())
 app.use(express.json())
 
+
+//connected mongoose
 const connect = async()=>{
     try {
         await mongoose.connect(process.env.MONGODB);
-        console.log('mongodb');
+        console.log('mongoose connected');
       } catch (error) {
        throw error
       }
-
 }
 mongoose.connection.on('disconnected', ()=> {
     console.log('mongodb disconnected');
   });
-mongoose.connection.on('connected', ()=> {
-    console.log('mongodb connected');
-  });
 
+
+//middleware
+app.use('/api/auth',(authRouter))
+app.use('/api/hotel',(hotelRouter))
+app.use('/api/room',(roomRouter))
+app.use('/api/users',(usersRouter))
+
+
+
+// initial route
 app.get('/', (req, res)=>{
     res.send('running sultan luxury hotel server')
 })
+
+
+
+// port listener
 app.listen(port,()=>{
     connect()
     console.log('listening',port)
 })
+
+
+
+
+
+
+
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 // async function run(){
