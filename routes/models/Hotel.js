@@ -3,50 +3,46 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 const HotelSchema = new mongoose.Schema({
     name:{
-        type:string,
-        require:true
-    },
-    name:{
-        type:string,
+        type:String,
         require:true
     },
     type:{
-        type:string,
+        type:String,
         require:true
     },
     city:{
-        type:string,
+        type:String,
         require:true
     },
     distance:{
-        type:string,
+        type:String,
         require:true
     },
     address:{
-        type:string,
+        type:String,
         require:true
     },
     description:{
-        type:string,
+        type:String,
         require:true
     },
     cheapestPrice:{
-        type:number,
+        type:Number,
         require:true
     },
     photos:{
-        type:[string]
+        type:[String]
     },
     rating:{
-        type:number,
+        type:Number,
         min:0,
         max:1
     },
     rooms:{
-        type:[string]
+        type:[String]
     },
     feature:{
-        type:boolean,
+        type:Boolean,
         default:false
     },
 })
