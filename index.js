@@ -14,10 +14,12 @@ import authRouter from './routes/auth.js'
 import hotelsRouter from './routes/hotels.js'
 import roomRouter from './routes/room.js'
 import usersRouter from './routes/users.js'
+import cookieParser from 'cookie-parser'
 
 //middleware 
 app.use(cors())
 app.use(express.json())
+app.use(cookieParser)
 
 
 //connected mongoose

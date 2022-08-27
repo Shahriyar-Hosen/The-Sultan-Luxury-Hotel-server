@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     password: {
-        type: Number,
+        type: String,
         require: true
     },
     isAdmin: {
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     },
 },
     {
-        Timestamp: true
+       timestamps:true
     }
 )
 
