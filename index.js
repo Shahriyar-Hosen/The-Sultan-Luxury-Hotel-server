@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
 dotenv.config()
 const app = express()
 
@@ -14,42 +15,41 @@ import authRouter from './routes/auth.js'
 import hotelsRouter from './routes/hotels.js'
 import roomRouter from './routes/room.js'
 import usersRouter from './routes/users.js'
-import cookieParser from 'cookie-parser'
 
 //middleware 
 app.use(cors())
 app.use(express.json())
-app.use(cookieParser)
+app.use(cookieParser())
 
 
 //connected mongoose
-const connect = async()=>{
+const connect = async () => {
     try {
         await mongoose.connect(process.env.MONGODB);
         console.log('mongoose connected');
-      } catch (error) {
-       throw error
-      }
+    } catch (error) {
+        throw error
+    }
 }
-mongoose.connection.on('disconnected', ()=> {
+mongoose.connection.on('disconnected', () => {
     console.log('mongodb disconnected');
-  });
+});
 
 
 //middleware
-app.use('/api/auth',(authRouter))
-app.use('/api/hotels',(hotelsRouter))
-app.use('/api/room',(roomRouter))
-app.use('/api/users',(usersRouter))
+app.use('/api/auth', (authRouter))
+app.use('/api/hotels', (hotelsRouter))
+app.use('/api/room', (roomRouter))
+app.use('/api/users', (usersRouter))
 
-app.use((err, req, res, next)=>{
+app.use((err, req, res, next) => {
     const errStatus = err.status || 500
     const errMessage = err.message || 'Something is wrong'
     return res.status(errStatus).json({
-        success:false,
-        status:errStatus,
-        message:errMessage,
-        stack:err.stack
+        success: false,
+        status: errStatus,
+        message: errMessage,
+        stack: err.stack
     })
     next()
 })
@@ -57,16 +57,16 @@ app.use((err, req, res, next)=>{
 
 
 // initial route
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
     res.send('running sultan luxury hotel server')
 })
 
 
 
 // port listener
-app.listen(port,()=>{
+app.listen(port, () => {
     connect()
-    console.log('listening',port)
+    console.log('listening', port)
 })
 
 
@@ -87,13 +87,13 @@ app.listen(port,()=>{
 //         const menuCollection = client.db('sultanLuxuryHotel').collection('restaurantMenu')
 //         app.get('/roomsSuites', async (req, res)=>{
 //             const rooms = await roomsCollection.find().toArray()
-//             res.send(rooms) 
+//             res.send(rooms)
 //         })
 //         app.get('/roomsSuites/:id', async (req, res)=>{
 //             const id = req.params.id
 //             const query = {_id:ObjectId(id)}
 //             const rooms = await roomsCollection.findOne(query)
-//             res.send(rooms) 
+//             res.send(rooms)
 //         })
 //         app.get('/facilities', async (req, res)=>{
 //             const facilities = await facilitiesCollection.find().toArray()
