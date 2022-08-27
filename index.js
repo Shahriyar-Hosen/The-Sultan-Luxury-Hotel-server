@@ -41,14 +41,15 @@ app.use('/api/room',(roomRouter))
 app.use('/api/users',(usersRouter))
 
 app.use((err, req, res, next)=>{
-    const errStatus = err.errStatus || 500
-    const errMessage = err.errMessage || 'Something is wrong'
+    const errStatus = err.status || 500
+    const errMessage = err.message || 'Something is wrong'
     return res.status(errStatus).json({
         success:false,
         status:errStatus,
         message:errMessage,
         stack:err.stack
     })
+    next()
 })
 
 
