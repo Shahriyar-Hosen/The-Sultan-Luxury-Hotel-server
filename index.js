@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000
 //imported file from own file
 import authRouter from './routes/auth.js'
 import hotelsRouter from './routes/hotels.js'
-import roomRouter from './routes/room.js'
+import roomsRouter from './routes/rooms.js'
 import usersRouter from './routes/users.js'
 
 //middleware 
@@ -39,7 +39,7 @@ mongoose.connection.on('disconnected', () => {
 //middleware
 app.use('/api/auth', (authRouter))
 app.use('/api/hotels', (hotelsRouter))
-app.use('/api/room', (roomRouter))
+app.use('/api/rooms', (roomsRouter))
 app.use('/api/users', (usersRouter))
 
 app.use((err, req, res, next) => {

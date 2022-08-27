@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const HotelSchema = new mongoose.Schema({
+const RoomSchema = new mongoose.Schema({
     title:{
         type:String,
         require:true
@@ -8,6 +8,9 @@ const HotelSchema = new mongoose.Schema({
     price:{
         type:Number,
         require:true
+    },
+    rooms:{
+        type:[String]
     },
     maxPeople:{
         type:Number,
@@ -27,4 +30,4 @@ const HotelSchema = new mongoose.Schema({
 },{timestamps:true})
 
 
-export default mongoose.model("Hotel", HotelSchema)
+export default mongoose.model("Room", RoomSchema)
