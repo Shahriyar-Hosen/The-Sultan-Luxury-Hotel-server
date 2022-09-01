@@ -9,7 +9,26 @@ const RoomSchema = new mongoose.Schema({
         type:Number,
         require:true
     },
-    rooms:{
+    shift:{
+        type:String,
+        require:true
+    },
+    instructions:{
+        type:String,
+        require:true
+    },
+    extraBeds:{
+        type:String,
+        require:true
+    },
+    pets:{
+        type:String,
+        require:true
+    },
+    checkIn:{
+        type:[String]
+    },
+    checkOut:{
         type:[String]
     },
     maxPeople:{
@@ -17,12 +36,13 @@ const RoomSchema = new mongoose.Schema({
         require:true
     },
     description:{
-        type:String,
-        require:true
+        type:[String],
     },
-    cheapestPrice:{
-        type:Number,
-        require:true
+    amenities:{
+        type:[String],
+    },
+    photos:{
+        type:[String]
     },
     roomNumbers:{
         type:[{number:Number, unavailableDates: {type:[Date]}}]
