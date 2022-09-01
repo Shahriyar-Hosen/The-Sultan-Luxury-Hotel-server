@@ -15,6 +15,7 @@ import authRouter from './routes/auth.js'
 import hotelsRouter from './routes/hotels.js'
 import roomsRouter from './routes/rooms.js'
 import usersRouter from './routes/users.js'
+import facilitiesRouter from './routes/facilities.js'
 
 //middleware 
 app.use(cors())
@@ -41,6 +42,7 @@ app.use('/api/auth', (authRouter))
 app.use('/api/hotels', (hotelsRouter))
 app.use('/api/rooms', (roomsRouter))
 app.use('/api/users', (usersRouter))
+app.use('/api/facilities', (facilitiesRouter))
 
 app.use((err, req, res, next) => {
     const errStatus = err.status || 500
