@@ -37,6 +37,7 @@ mongoose.connection.on('disconnected', () => {
 });
 
 
+
 //middleware
 app.use('/api/auth', (authRouter))
 app.use('/api/hotels', (hotelsRouter))
