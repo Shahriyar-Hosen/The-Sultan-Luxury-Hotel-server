@@ -4,6 +4,8 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
+import stripe from 'stripe'
+stripe(process.env.CLIENT_SECRET_KEY_STRIP)
 dotenv.config()
 const app = express()
 
@@ -16,6 +18,7 @@ import hotelsRouter from './routes/hotels.js'
 import roomsRouter from './routes/rooms.js'
 import usersRouter from './routes/users.js'
 import facilitiesRouter from './routes/facilities.js'
+// import paymentRouter from './routes/payment.js'
 
 //middleware 
 app.use(cors())
@@ -44,6 +47,7 @@ app.use('/api/hotels', (hotelsRouter))
 app.use('/api/rooms', (roomsRouter))
 app.use('/api/users', (usersRouter))
 app.use('/api/facilities', (facilitiesRouter))
+// app.use('/api/create-payment-intent', (paymentRouter))
 
 app.use((err, req, res, next) => {
     const errStatus = err.status || 500
