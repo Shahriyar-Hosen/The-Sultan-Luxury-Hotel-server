@@ -14,3 +14,14 @@
 //         res.status(400).json(err)
 //     }
 // }
+
+const obj = {
+    a:{
+        b:{
+            c:true,
+        }
+    }
+}
+const cd = {...obj, c:{obj.a.b.c:false}}
+
+console.log(cd);
