@@ -1,4 +1,3 @@
-import { MaxKey } from "mongodb";
 import Room from "../models/Room.js";
 
 export const createRoom = async (req, res, next) => {
@@ -18,6 +17,17 @@ export const updateRoom = async (req, res, next) => {
         res.status(500).json(err)
     }
 }
+export const updateRoomAvailability = async (req, res, next) => {
+        try {
+             const update = await Room.updateOne(
+                { "roomNumbers._id": req.params.id },
+                { $push: { "roomNumbers.$.unavailableDates": req.body.dates } }
+            )
+            res.status(200).json(update)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+}
 export const deleteRoom = async (req, res, next) => {
     try {
         await Room.findByIdAndDelete(req.params.id)
@@ -35,9 +45,9 @@ export const getRoom = async (req, res, next) => {
     }
 }
 export const getRooms = async (req, res, next) => {
-    const {max, min, ...other} = req.query
+    const { max, min, ...other } = req.body
     try {
-        const room = await Room.find({...other, price:{$gt:min || 0, $lt:max || 999}}).limit(req.query.limit)
+        const room = await Room.find({ ...other, price: { $gt: max || 0, $lt: min || 999 } }).limit(req.query.limit)
         res.status(200).json(room)
     } catch (err) {
         next(err)
