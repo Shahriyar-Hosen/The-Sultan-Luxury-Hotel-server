@@ -7,6 +7,7 @@ const router = express.Router()
 router.post('/', verifyAdmin, createRoom)
 //update
 router.put('/:id', verifyAdmin, updateRoom)
+//update available room
 router.put('/availability/:id', updateRoomAvailability)
 //delete
 router.delete('/:id', verifyAdmin, deleteRoom)
