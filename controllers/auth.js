@@ -10,6 +10,9 @@ export const register = async (req, res, next) => {
         const newUser = new User({
             userName: req.body.userName,
             email: req.body.email,
+            img: req.body.img,
+            address: req.body.address,
+            phone: req.body.phone,
             password: hash
         })
         await newUser.save()
