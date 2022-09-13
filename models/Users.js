@@ -14,7 +14,19 @@ const userSchema = new mongoose.Schema({
     img: {
         type: String,
     },
+    city: {
+        type: String,
+        required: true,
+    },
+    street: {
+        type: String,
+        required: true,
+    },
     address: {
+        type: String,
+        required: true,
+    },
+    district: {
         type: String,
         required: true,
     },

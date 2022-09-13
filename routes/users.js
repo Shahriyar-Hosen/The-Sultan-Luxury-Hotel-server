@@ -12,7 +12,7 @@ const router = express.Router()
 //     res.send('you are logged in and you can delete all accounts')
 // })
 //update
-router.put('/:id', verifyUser, updateUser)
+router.put('/:id', updateUser)
 //delete
 router.delete('/:id', verifyUser, deleteUser)
 //get

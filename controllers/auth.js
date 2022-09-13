@@ -12,6 +12,9 @@ export const register = async (req, res, next) => {
             email: req.body.email,
             img: req.body.img,
             address: req.body.address,
+            city: req.body.city,
+            street: req.body.street,
+            district: req.body.district,
             phone: req.body.phone,
             password: hash
         })
