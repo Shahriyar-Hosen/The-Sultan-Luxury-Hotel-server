@@ -16,11 +16,9 @@ const userSchema = new mongoose.Schema({
     },
     city: {
         type: String,
-        required: true,
     },
     street: {
         type: String,
-        required: true,
     },
     address: {
         type: String,
@@ -28,7 +26,6 @@ const userSchema = new mongoose.Schema({
     },
     district: {
         type: String,
-        required: true,
     },
     phone: {
         type: String,

@@ -8,18 +8,11 @@ export const register = async (req, res, next) => {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
         const newUser = new User({
-            userName: req.body.userName,
-            email: req.body.email,
-            img: req.body.img,
-            address: req.body.address,
-            city: req.body.city,
-            street: req.body.street,
-            district: req.body.district,
-            phone: req.body.phone,
+            ...req.body,
             password: hash
         })
         await newUser.save()
-        res.status(200).send('user has been created')
+        res.status(200).send(newUser)
     } catch (err) {
         next(err)
     }
