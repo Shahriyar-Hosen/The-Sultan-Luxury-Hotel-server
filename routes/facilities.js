@@ -6,8 +6,6 @@ const router = express.Router()
 
 // create
 router.post('/', createFacilities)
-// update
-// delete
 // get
 router.get('/', getFacilities)
 // get by id
